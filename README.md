@@ -2,9 +2,9 @@
 
 ## Enable MQTT communication for controlling your devices.
 
-A fork of the MQTT Plugin by Theo428, trying to add more flexibility in use cases.
-This is a plugin allows you to send messages from your MIDI device to any MQTT broker / external system.
-Listening to MQTT subscriptions is not supported at this time.
+A fork of the MQTT Plugin by Theo428, trying to add more flexibility in use cases.<br />
+This is a plugin allows you to send messages from your MIDI device to any MQTT broker / external system.<br />
+Listening to MQTT subscriptions is not supported at this time.<br />
 
 ### Features:
 - Send updates over MQTT to a external broker / device of your choice.
@@ -12,9 +12,11 @@ Listening to MQTT subscriptions is not supported at this time.
 - Allows string variables like `{id}`, `{value}`, and `{host}` to be used within the settings.
 - Configurable throttle of volume slider to prevent a large load on the broker.
 
+<br />
+
 ## Getting Started
 
-Before getting started, make sure you have MIDI Mixer installed, and **you have a MQTT broker set up to connect to.**
+Before getting started, make sure you have MIDI Mixer installed, and **you have a MQTT broker set up to connect to.**<br />
 For example, a custom broker, or any built in ones in [Home Assistant](https://github.com/home-assistant/addons/blob/master/mosquitto/DOCS.md), [OpenRemote](https://github.com/openremote/openremote/wiki/User-Guide%3A-Manager-APIs#mqtt-api-mqtt-broker) or any other IoT platform.
 
 1. Download the plugin with the latest release from the [releases](https://github.com/MartinaeyNL/midi-mixer-mqtt/releases) page on GitHub.
@@ -23,9 +25,11 @@ For example, a custom broker, or any built in ones in [Home Assistant](https://g
 4. Select the plugin, go to the [settings](#settings) tab, and fill in your preferences. Details of the options are below.
 5. Activate the plugin.
 
+<br />
+
 ## Settings
 
-A short description of the plugin options that are available.
+A short description of the plugin options that are available.<br />
 The configurable events are listed below.
 
 |  Option | Default | Description |
@@ -45,6 +49,7 @@ The configurable events are:
 - On mute button press
 - On run button press
 
+<br />
 
 ## Variables
 
@@ -63,24 +68,32 @@ Only applicable for "On (event)" options;
 | Variable | Description |
 |---|---|
 | `{id}` | ID of the MIDI Mixer assignment. It's a primary that counts from 0 to ... |
-| `{value}` | Value sent by the MIDI Mixer assignment. For the volume slider this is a value from 0 to 1, buttons will provide an empty string `''`. |
+| `{value}` | Value sent by the MIDI Mixer assignment. For the volume slider this is a value from 0 to 1,<br />buttons will provide an empty string `''`. |
 
+<br />
 
 ## FAQ
 
-- **"Can I also listen for MQTT messages?"**
+- **"Can I also listen for MQTT messages?"** <br />
   No this is not supported yet.
 
-- **"It doesn't seem to connect to my MQTT broker!"**
-  Double check this using a separate application to be sure.
-  A desktop notification should appear when an error appears. You can also enable dev mode to see logs.
-  This fork has a very basic setup, so I wouldn't be surprised if it breaks in some scenarios.
+- **"It doesn't seem to connect to my MQTT broker!"** <br />
+  Double check this using a separate application to be sure.<br />
+  A desktop notification should appear when an error appears. You can also enable dev mode to see logs.<br />
+  This fork has a very basic setup, so I wouldn't be surprised if it breaks in some scenarios.<br />
   Make an issue and/or contribute if it did.
 
-- **"The MQTT Broker I want to use doesn't have authentication."**
+- **"The MQTT Broker I want to use doesn't have authentication."** <br />
   'You should!' is the simple answer, but it's currently not supported. Will work on this.
 
+<br />
 
 ## Contributing
-This fork started out at as a simple "I want it to work for my setup"-project, what is basically still is.
+This fork started out at as a simple "I want it to work for my setup"-project, what is basically still is.<br />
 However I'm happy if developers want to contribute to this plugin; open an issue / PR / or send me a message!
+
+<br />
+
+<br />
+
+<br />
