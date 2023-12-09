@@ -25,11 +25,14 @@ mmService.getSettings().then(settings => {
     console.log("Registering assignments...");
     assignmentService.registerAssignments(settings.numberOfAssignments, settings.volumeChangedThrottle);
 
-    // Continue to connect MQTT
-    console.log("Connecting to MQTT...");
-    mqttService.connect(mmSettings);
+    // Applying a small delay
+    setTimeout(() => {
 
+        // Continue to connect MQTT
+        console.log("Connecting to MQTT...");
+        mqttService.connect(mmSettings);
 
+    }, 500)
 
 }).catch((e) => {
     console.error(e);

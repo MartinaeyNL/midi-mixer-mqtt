@@ -54,65 +54,65 @@ export class MqttService {
 
     protected _addMQTTListeners() {
         if(this.client) {
-            this.client.on('connect', this._onMQTTConnect);
-            this.client.on("message", this._onMQTTMessage);
-            this.client.on("packetsend", this._onMQTTPacketSend);
-            this.client.on("packetreceive", this._onMQTTPacketReceive);
-            this.client.on("disconnect", this._onMQTTDisconnect);
-            this.client.on("error", this._onMQTTError);
-            this.client.on("close", this._onMQTTClose);
-            this.client.on("end", this._onMQTTEnd);
-            this.client.on('reconnect', this._onMQTTReconnect);
-            this.client.on("offline", this._onMQTTOffline);
-            this.client.on("outgoingEmpty", this._onMQTTOutgoingEmpty);
+            this.client.on('connect', packet => this._onMQTTConnect(this.mm, packet));
+            this.client.on("message", (packet: IPublishPacket) => this._onMQTTMessage(this.mm, packet));
+            this.client.on("packetsend", packet => this._onMQTTPacketSend(this.mm, packet));
+            this.client.on("packetreceive", packet => this._onMQTTPacketReceive(this.mm, packet));
+            this.client.on("disconnect", packet => this._onMQTTDisconnect(this.mm, packet));
+            this.client.on("error", error => this._onMQTTError(this.mm, error));
+            this.client.on("close", () => this._onMQTTClose(this.mm));
+            this.client.on("end", () => this._onMQTTEnd(this.mm));
+            this.client.on('reconnect', () => this._onMQTTReconnect(this.mm));
+            this.client.on("offline", () => this._onMQTTOffline(this.mm));
+            this.client.on("outgoingEmpty", () => this._onMQTTOutgoingEmpty(this.mm));
         }
     }
 
     /* ----------------------------------------- */
 
-    protected _onMQTTConnect(packet: IConnackPacket) {
-        this.mm.showNotification("Connected to MQTT broker.");
+    protected _onMQTTConnect(mm: MMAPI, packet: IConnackPacket) {
+        mm.showNotification("Connected to MQTT broker.");
         console.log(packet);
     }
 
-    protected _onMQTTMessage(packet: IPublishPacket) {
+    protected _onMQTTMessage(mm: MMAPI, packet: IPublishPacket) {
         console.log(packet);
     }
 
-    protected _onMQTTPacketSend(packet: Packet) {
+    protected _onMQTTPacketSend(mm: MMAPI, packet: Packet) {
         console.log(packet);
     }
 
-    protected _onMQTTPacketReceive(packet: Packet) {
+    protected _onMQTTPacketReceive(mm: MMAPI, packet: Packet) {
         console.log(packet);
     }
 
-    protected _onMQTTDisconnect(packet: IDisconnectPacket) {
-        this.mm.showNotification("Disconnected from MQTT broker.");
+    protected _onMQTTDisconnect(mm: MMAPI, packet: IDisconnectPacket) {
+        mm.showNotification("Disconnected from MQTT broker.");
         console.log(packet);
     }
 
-    protected _onMQTTError(error: Error) {
+    protected _onMQTTError(mm: MMAPI, error: Error) {
         console.error(error);
     }
 
-    protected _onMQTTClose() {
+    protected _onMQTTClose(mm: MMAPI) {
         console.log("onMQTTClose()");
     }
 
-    protected _onMQTTEnd() {
+    protected _onMQTTEnd(mm: MMAPI) {
         console.log("onMQTTEnd()");
     }
 
-    protected _onMQTTReconnect() {
+    protected _onMQTTReconnect(mm: MMAPI) {
         console.log("onMQTTReconnect()");
     }
 
-    protected _onMQTTOffline() {
+    protected _onMQTTOffline(mm: MMAPI) {
         console.log("onMQTTOffline()");
     }
 
-    protected _onMQTTOutgoingEmpty() {
+    protected _onMQTTOutgoingEmpty(mm: MMAPI) {
         console.log("onMQTTOutgoingEmpty()");
     }
 }
