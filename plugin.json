@@ -1,56 +1,94 @@
 {
   "$schema": "./node_modules/midi-mixer-plugin/plugin.schema.json",
-  "id": "com.theo.midi-mixer.mqtt",
-  "name": "MQTT",
+  "id": "nl.martinaeynl.midi-mixer.mqtt",
+  "name": "MQTT Sender",
   "type": "node",
-  "version": "1.2.2",
-  "author": "Theo",
+  "version": "1.0.0",
+  "author": "MartinaeyNL",
   "main": "lib/main.js",
   "settings": {
     "host": {
-      "label": "Broker URL:Port (ex. mqtt://homeassistant.local:1883)",
+      "label": "MQTT Broker Host - {host}",
       "required": true,
-      "type": "text"
+      "type": "text",
+      "fallback": "mqtt://localhost:1883"
     },
-    "user": {
-      "label": "Broker Username",
+    "username": {
+      "label": "MQTT Username - {username}",
       "required": true,
       "type": "text"
     },
     "password": {
-      "label": "Broker Password",
-      "required": true,
-      "type": "password"
-    },
-    "HADiscovery": {
-      "label": "Enable Home Assistant Discovery",
-      "type": "toggle"
-    },
-    "deviceID": {
-      "label": "Device ID(Home Assistant Device ID)",
+      "label": "MQTT Password - {password}",
       "required": true,
       "type": "text"
     },
-    "assignmentCount": {
-      "label": "Number of Groups to Create",
+    "clientId": {
+      "label": "MQTT Client ID - {clientId}",
+      "required": true,
+      "type": "text",
+      "fallback": "midi-mixer-app-1"
+    },
+    "numberOfAssignments": {
+      "label": "Number of Assignments to Create - {assignmentId} / {assignmentName}",
       "type": "integer",
+      "required": true,
       "min": 0,
-      "max": 50
+      "max": 200,
+      "fallback": 3
     },
-    "buttonCount": {
-      "label": "Number of Buttons to create",
+    "volumePublishingTopic": {
+      "label": "On volume change - MQTT Publish topic",
+      "type": "text",
+      "required": true,
+      "fallback": "{clientId}/write/{id}"
+    },
+    "volumePublishingMessage": {
+      "label": "On volume change - MQTT Publish message",
+      "type": "text",
+      "required": true,
+      "fallback": "{value}"
+    },
+    "volumeChangedThrottle": {
+      "label": "Throttle in ms for volume sliders",
       "type": "integer",
+      "required": true,
       "min": 0,
-      "max": 50
+      "max": 5000,
+      "fallback": 100
     },
-    "status": {
-      "label": "Status",
-      "type": "status",
-      "fallback": "Disconnected"
+    "assignBtnPublishingTopic": {
+      "label": "On assign press - MQTT Publish topic",
+      "type": "text",
+      "required": true,
+      "fallback": "{clientId}/write/{id}"
     },
-    "resetHA": {
-      "label": "Remove All Home Assistant Devices (Warning: May Break Home Assistant Stuff)",
-      "type": "button"
+    "assignBtnPublishingMessage": {
+      "label": "On assign press - MQTT Publish message",
+      "type": "text",
+      "required": false
+    },
+    "muteBtnPublishingTopic": {
+      "label": "On mute press - MQTT Publish topic",
+      "type": "text",
+      "required": true,
+      "fallback": "{clientId}/write/{id}"
+    },
+    "muteBtnPublishingMessage": {
+      "label": "On mute press - MQTT Publish message",
+      "type": "text",
+      "required": false
+    },
+    "runBtnPublishingTopic": {
+      "label": "On run press - MQTT Publish topic",
+      "type": "text",
+      "required": true,
+      "fallback": "{clientId}/write/{id}"
+    },
+    "runBtnPublishingMessage": {
+      "label": "On run press - MQTT Publish message",
+      "type": "text",
+      "required": false
     }
   }
 }
